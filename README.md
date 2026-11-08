@@ -168,7 +168,7 @@ Con `Build` se compiló la aplicación sin errores. Con la Zybo conectada, `Run`
 
 ## 5. Funcionamiento en la FPGA
 
-**Video:** [Funcionamiento del SoC en la Zybo Z7](_[enlace al video]_)
+**Video:** [Funcionamiento del SoC en la Zybo Z7](_[(https://drive.google.com/file/d/1iDhMxpr6cz7GVlGyuB_5qeMGZueUY2hL/view?usp=sharing)]_)
 
 Se observó el comportamiento esperado:
 
