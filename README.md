@@ -54,7 +54,7 @@ Las dos partes se comunican mediante buses **AXI**. En esta práctica, el proces
 
 ### 3.1 Instalación de los archivos de la tarjeta
 
-Se instalaron los *board files* de Digilent siguiendo la guía oficial, para que Vivado reconozca la **Zybo Z7-10** como placa. Esto permite que Vivado conozca la configuración del PS (memoria DDR, relojes, pines MIO) y los periféricos de la tarjeta (LEDs y botones), y los configure automáticamente.
+Se instalaron los *board files* de Digilent siguiendo la guía oficial, para que Vivado reconozca la **Zybo Z7-10** como placa. Esto permite que Vivado conozca la configuración del PS (memoria DDR, relojes, pines MIO) y los periféricos de la tarjeta (LEDs y switch), y los configure automáticamente.
 
 ### 3.2 Creación del proyecto
 
@@ -73,7 +73,7 @@ En `IP INTEGRATOR → Create Block Design` se agregaron los siguientes bloques:
 | **AXI Interconnect** | Conecta un maestro (el procesador) con varios esclavos (controlador de BRAM y GPIO). Según la dirección de cada acceso, dirige la transacción al periférico correspondiente |
 | **AXI BRAM Controller** | Traduce las transacciones AXI del procesador en las señales de dirección, dato y habilitación que necesita la memoria BRAM |
 | **Block Memory Generator** | La memoria BRAM implementada en la PL |
-| **AXI GPIO** | Periférico de entradas y salidas de propósito general, con un canal para los 4 LEDs y otro para los 4 botones de la tarjeta |
+| **AXI GPIO** | Periférico de entradas y salidas de propósito general, con un canal para los 4 LEDs y otro para los 4 switch de la tarjeta |
 
 ![Bloques agregados](imgs/02_bloques_sueltos.png)
 
@@ -85,7 +85,7 @@ Se conectaron los bloques de memoria y reset:
 
 Luego se agregaron desde la pestaña `Board` los GPIO **4 Buttons** y **4 LEDs**, y se conectaron sus señales de reloj, reset y AXI:
 
-![GPIO de LEDs y botones](imgs/04_gpio.png)
+![GPIO de LEDs y switch](imgs/04_gpio.png)
 
 Con `Regenerate Layout`, el diagrama final queda así:
 
@@ -112,7 +112,7 @@ El rango del AXI GPIO se redujo de 64K a **4K**. Sus registros (datos y direcci�
 | `axi_bram_ctrl_0` | _[completar con la captura]_ | _[ ]_ |
 | `axi_gpio_0` | _[completar con la captura]_ | 4K |
 
-Estas direcciones quedan registradas en el archivo `xparameters.h` que genera Vitis, y son las que usa el programa en C para acceder a los LEDs y botones.
+Estas direcciones quedan registradas en el archivo `xparameters.h` que genera Vitis, y son las que usa el programa en C para acceder a los LEDs y switch.
 
 ### 3.6 HDL Wrapper
 
@@ -181,7 +181,7 @@ Esto confirma que el sistema completo funciona:
 | Elemento | Evidencia |
 |---|---|
 | Procesador ARM ejecutando el programa | El patrón de parpadeo lo genera el código en C |
-| Bus AXI y mapa de direcciones | El procesador escribe en los LEDs y lee los botones a través del AXI GPIO |
+| Bus AXI y mapa de direcciones | El procesador escribe en los LEDs y lee los switch a través del AXI GPIO |
 | Lógica programable | El AXI GPIO, el interconector y el controlador de BRAM están implementados en la PL con el bitstream exportado |
 
 ---
