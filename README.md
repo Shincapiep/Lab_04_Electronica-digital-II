@@ -173,7 +173,7 @@ Con `Build` se compiló la aplicación sin errores. Con la Zybo conectada, `Run`
 Se observó el comportamiento esperado:
 
 - Los **LEDs parpadean** de forma continua.
-- Al **mantener presionado un botón**, el LED correspondiente permanece encendido mientras el botón siga pulsado.
+- Al Activar un switch, el LED correspondiente permanece encendido mientras el switch siga en alto.
 
 Esto confirma que el sistema completo funciona:
 
