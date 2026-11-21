@@ -25,7 +25,9 @@
 
 ## 1. Objetivo
 
-Implementar un **System on Chip (SoC)** sobre la Zybo Z7-10 usando el *Block Design* de Vivado, integrando el procesador ARM del Zynq-7000 con memoria y periféricos implementados en la lógica programable, y ejecutar sobre él una aplicación en C desarrollada en Vitis.
+En esta práctica de laboratorio se aborda la implementación de un sistema embebido utilizando la tarjeta de desarrollo Zybo Z7-10, basada en la arquitectura Zynq-7000 de AMD-Xilinx. Esta plataforma integra un sistema de procesamiento (Processing System, PS), basado en procesadores ARM, y una sección de lógica programable (Programmable Logic, PL), lo que permite desarrollar aplicaciones que combinan software y hardware configurable dentro de un mismo dispositivo.
+
+El propósito de la práctica consiste en comprender la interacción entre ambas secciones mediante el protocolo de comunicación AXI, utilizando periféricos GPIO para controlar LEDs y leer pulsadores. Para ello, se emplea Vivado en el diseño y configuración del hardware, mientras que Vitis se utiliza para desarrollar y ejecutar una aplicación en lenguaje C que permite interactuar con los periféricos implementados.
 
 El flujo completo de la práctica es:
 
