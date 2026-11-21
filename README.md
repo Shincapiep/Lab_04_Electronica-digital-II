@@ -107,11 +107,19 @@ En el diagrama se distinguen tres tipos de conexiones:
 | **Reset** | `FCLK_RESET0_N` → Processor System Reset | Interconector y periféricos |
 | **Datos (AXI)** | `M_AXI_GP0` del PS → AXI Interconnect | AXI BRAM Controller y AXI GPIO |
 
+La comunicación entre el procesador y los periféricos de la lógica programable se establece mediante la interfaz M_AXI_GP0 del Processing System, conectada al AXI Interconnect. Este bloque distribuye las transacciones hacia los periféricos AXI GPIO y AXI BRAM Controller, de acuerdo con las direcciones asignadas durante la configuración del sistema.
+
+El reloj FCLK_CLK0, generado por el Processing System, proporciona la referencia temporal necesaria para los componentes conectados al sistema AXI. Por su parte, el bloque Processor System Reset utiliza las señales de reloj y reinicio correspondientes para generar los resets sincronizados que requieren los diferentes componentes.
+
+Finalmente, las señales externas del AXI GPIO se conectan a los dispositivos físicos de la tarjeta, permitiendo que las operaciones de lectura y escritura realizadas por el procesador se reflejen en el comportamiento de los switches y LEDs.
+
 ### 3.5 Mapa de direcciones
 
-En el `Address Editor` se asignaron las direcciones de los periféricos. Desde el procesador, cada periférico de la PL ocupa un rango del mapa de memoria; el puerto `M_AXI_GP0` del Zynq accede a la región que va de `0x4000_0000` a `0x7FFF_FFFF`.
+Durante la configuración del sistema en Vivado, el `Address Editor` permite visualizar y asignar las direcciones base y los rangos de memoria correspondientes al controlador AXI BRAM y al periférico AXI GPIO. Estas direcciones son fundamentales para establecer la comunicación correcta entre el software y los dispositivos conectados a la lógica programable. Desde el procesador, cada periférico de la PL ocupa un rango del mapa de memoria; el puerto `M_AXI_GP0` del Zynq accede a la región que va de `0x4000_0000` a `0x7FFF_FFFF`.
 
-El rango del AXI GPIO se redujo de 64K a **4K**. Sus registros (datos y dirección de cada canal, e interrupciones) ocupan muy pocos bytes, así que 4 KB son suficientes y se evita reservar espacio de direcciones que nunca se usará.
+En el caso del AXI GPIO, el acceso a los diferentes registros se realiza mediante desplazamientos respecto a la dirección base. Esto permite utilizar registros independientes para consultar o modificar los datos de cada canal y establecer la dirección de las señales como entradas o salidas digitales. Además, el rango del AXI GPIO se redujo de 64K a **4K**. Sus registros (datos y dirección de cada canal, e interrupciones) ocupan muy pocos bytes, así que 4 KB son suficientes y se evita reservar espacio de direcciones que nunca se usará.
+
+La correspondencia entre las direcciones asignadas en Vivado y las utilizadas en el código C resulta indispensable para garantizar el funcionamiento del sistema. Por esta razón, es necesario verificar que la dirección base definida en el programa coincida con la configuración del hardware exportado.
 
 ![Address Editor](imgs/06_address_editor.png)
 
