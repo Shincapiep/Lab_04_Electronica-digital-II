@@ -77,6 +77,12 @@ En `IP INTEGRATOR → Create Block Design` se agregaron los siguientes bloques:
 | **Block Memory Generator** | La memoria BRAM implementada en la PL |
 | **AXI GPIO** | Periférico de entradas y salidas de propósito general, con un canal para los 4 LEDs y otro para los 4 switch de la tarjeta |
 
+La integración de estos bloques permite construir una arquitectura en la que el procesador ARM actúa como coordinador de las transacciones AXI, mientras que los periféricos implementados en la lógica programable responden a las operaciones de lectura y escritura. El AXI Interconnect permite distribuir las transacciones hacia el controlador de memoria BRAM y el periférico AXI GPIO, según la dirección solicitada.
+
+Para el control de las entradas y salidas se configura un AXI GPIO de doble canal, con cuatro bits asociados a los LEDs y cuatro bits asociados a los switches. De esta manera, se establece una interfaz de cuatro entradas y cuatro salidas digitales que puede controlarse mediante registros accesibles desde el programa en C.
+
+La memoria BRAM se incorpora como un recurso de almacenamiento interno de la lógica programable. Su integración al sistema permite disponer de una región de memoria accesible mediante el controlador AXI BRAM, aunque su utilización efectiva depende de que la aplicación realice operaciones de acceso a dicha región.
+
 ![Bloques agregados](imgs/02_bloques_sueltos.png)
 
 ### 3.4 Conexiones
