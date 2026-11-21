@@ -138,19 +138,13 @@ El Block Design no se puede sintetizar directamente: Vivado necesita un módulo 
 
 ### 3.7 Run Block Automation
 
-`Run Block Automation` aplica al bloque ZYNQ7 Processing System la configuración predefinida de la Zybo Z7-10 (memoria DDR, pines MIO, relojes) y crea los puertos externos `DDR` y `FIXED_IO`, que conectan el PS con la memoria y los pines fijos de la tarjeta.
+Aquí se ejecuta la herramienta `Run Block Automation` para aplicar la configuración predeterminada correspondiente a la tarjeta Zybo Z7-10. Este procedimiento permite configurar diferentes parámetros del Processing System y establecer las conexiones externas necesarias para las interfaces `DDR` y `FIXED_IO`, que conectan el PS con la memoria y los pines fijos de la tarjeta.
 
 ![Run Block Automation](imgs/08_run_block_automation.png)
 
 ### 3.8 Bitstream y exportación del hardware
 
-Se generó el bitstream y se exportó el hardware con `File → Export → Export Hardware`, **incluyendo el bitstream**. El resultado es el archivo **`.xsa`**, que contiene:
-
-- La configuración del PS.
-- El mapa de direcciones de los periféricos.
-- El bitstream que programa la PL.
-
-Este archivo es el puente entre Vivado y Vitis: con él, Vitis sabe qué hardware existe y en qué direcciones está.
+Una vez validada la arquitectura, se genera el bitstream, archivo que contiene la información necesaria para configurar los recursos de la lógica programable de la FPGA. Posteriormente, mediante la opción `Export Hardware`, se genera un archivo XSA que contiene la descripción de la plataforma hardware y la información necesaria para crear el entorno de desarrollo en Vitis. Cuando se selecciona la opción correspondiente, el archivo exportado también incluye el bitstream. Este proceso establece la conexión entre el diseño realizado en Vivado y el desarrollo de software que se ejecutará sobre el procesador ARM.
 
 ![Bitstream generado](imgs/09_bitstream.png)
 
@@ -172,11 +166,21 @@ La plataforma reúne la descripción del hardware y los controladores (*drivers*
 
 Sobre la plataforma se creó una **Application Component** vacía, usando el dominio creado por defecto, y se agregó el archivo `main.c` de la guía.
 
+El programa desarrollado en lenguaje C permite controlar los LEDs y consultar el estado de las entradas digitales mediante operaciones sobre los registros del periférico AXI GPIO. Para ello, se establece una dirección base correspondiente al dispositivo, a partir de la cual se realizan los accesos a los registros de datos y de configuración de sus canales.
+
+El funcionamiento del programa consiste en generar una secuencia periódica de encendido y apagado de los cuatro LEDs. Adicionalmente, se realiza la lectura del estado de los switches, cuyo valor se combina con el estado de parpadeo mediante una operación OR bit a bit. Esto permite que un LED permanezca encendido cuando su entrada correspondiente se encuentra en nivel lógico alto, independientemente de la fase actual del parpadeo.
+
+De esta manera, la aplicación demuestra cómo el procesador puede modificar dinámicamente el estado de los periféricos implementados en la lógica programable mediante instrucciones ejecutadas por software.
+
 ![Creación de la aplicación](imgs/12_vitis_application.png)
 
 ### 4.3 Compilación y ejecución
 
 Con `Build` se compiló la aplicación sin errores. Con la Zybo conectada, `Run` programó la PL con el bitstream, cargó el programa en el procesador y lo ejecutó.
+
+La compilación de la aplicación permite verificar que el código fuente y las dependencias utilizadas sean procesados correctamente por las herramientas de desarrollo. Una vez generados los archivos ejecutables, se procede a configurar la lógica programable mediante el bitstream y posteriormente a cargar la aplicación en el sistema de procesamiento.
+
+La ejecución del programa permite observar la interacción entre el procesador ARM y los periféricos GPIO. Durante esta etapa, el procesador realiza operaciones sobre los registros mapeados en memoria, mientras que el hardware implementado en la FPGA permite reflejar dichas operaciones en las señales físicas de entrada y salida.
 
 ![Build y Run](imgs/13_build_run.png)
 
@@ -187,10 +191,13 @@ Con `Build` se compiló la aplicación sin errores. Con la Zybo conectada, `Run`
 **Video:** [Funcionamiento del SoC en la Zybo Z7](_[https://drive.google.com/file/d/1iDhMxpr6cz7GVlGyuB_5qeMGZueUY2hL/view?usp=sharing]_)
 
 https://drive.google.com/file/d/1iDhMxpr6cz7GVlGyuB_5qeMGZueUY2hL/view?usp=sharing
-Se observó el comportamiento esperado:
 
-- Los **LEDs parpadean** de forma continua.
-- Al Activar un switch, el LED correspondiente permanece encendido mientras el switch siga en alto.
+
+Para comprobar el funcionamiento del sistema, se realizó la ejecución de la aplicación sobre la tarjeta Zybo Z7-10. Durante la prueba se observó que los cuatro LEDs presentan un comportamiento de parpadeo periódico cuando los switches permanecen desactivados.
+
+Al activar un switch, el LED correspondiente permanece encendido mientras dicha entrada se mantiene en nivel lógico alto. Esto se debe a que el programa combina el estado de parpadeo con el valor leído de las entradas digitales mediante una operación OR bit a bit. En consecuencia, los bits activados en las entradas conservan su valor lógico alto en la salida, aunque la secuencia de parpadeo se encuentre en su fase de apagado.
+
+El comportamiento observado es el esperado, además se evidencia funcionalmente la integración entre el software desarrollado en Vitis y los recursos de entrada y salida implementados mediante Vivado.
 
 Esto confirma que el sistema completo funciona:
 
@@ -203,6 +210,14 @@ Esto confirma que el sistema completo funciona:
 ---
 
 ## 6. Conclusiones
+
+El desarrollo de la práctica permitió comprender el funcionamiento general de un sistema embebido basado en la arquitectura Zynq-7000 y la importancia de la integración entre el sistema de procesamiento y la lógica programable. Mediante el uso de Vivado se estableció una arquitectura de hardware compuesta por el procesador ARM, las interfaces AXI y los periféricos necesarios para controlar las entradas y salidas digitales de la tarjeta Zybo Z7-10.
+
+También se identificó la función que desempeña el protocolo AXI en la comunicación entre ambos subsistemas, particularmente mediante el uso de registros mapeados en memoria. La asignación correcta de direcciones permite que el software desarrollado en C acceda a los periféricos de la lógica programable, demostrando que el comportamiento del hardware puede controlarse mediante instrucciones ejecutadas por el procesador.
+
+Durante la implementación se comprobó el funcionamiento de los LEDs y su respuesta ante la activación de las entradas digitales. Estos resultados permitieron relacionar el comportamiento físico observado con las operaciones lógicas realizadas en el programa, especialmente el uso de la operación OR bit a bit para combinar las señales de entrada con la secuencia de parpadeo.
+
+Finalmente, la práctica permitió reconocer la importancia de la integración entre Vivado y Vitis dentro del desarrollo de sistemas embebidos. La configuración del hardware, la generación del bitstream, la exportación de la plataforma y la ejecución de aplicaciones constituyen etapas complementarias que permiten implementar soluciones en las que el procesamiento por software interactúa directamente con recursos de hardware programable.
 
 ---
 
