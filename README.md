@@ -25,9 +25,9 @@
 
 ## 1. Objetivo
 
-En esta práctica de laboratorio se aborda la implementación de un sistema embebido utilizando la tarjeta de desarrollo Zybo Z7-10, basada en la arquitectura Zynq-7000 de AMD-Xilinx. Esta plataforma integra un sistema de procesamiento (Processing System, PS), basado en procesadores ARM, y una sección de lógica programable (Programmable Logic, PL), lo que permite desarrollar aplicaciones que combinan software y hardware configurable dentro de un mismo dispositivo.
+Implementar y verificar el funcionamiento de un sistema embebido basado en la arquitectura Zynq-7000, utilizando la tarjeta de desarrollo Zybo Z7-10. Para ello, se busca integrar el sistema de procesamiento ARM con los periféricos de la lógica programable mediante el protocolo AXI, permitiendo controlar cuatro LEDs y leer cuatro entradas digitales a través de una aplicación desarrollada en lenguaje C utilizando Vitis.
 
-El propósito de la práctica consiste en comprender la interacción entre ambas secciones mediante el protocolo de comunicación AXI, utilizando periféricos GPIO para controlar LEDs y leer pulsadores. Para ello, se emplea Vivado en el diseño y configuración del hardware, mientras que Vitis se utiliza para desarrollar y ejecutar una aplicación en lenguaje C que permite interactuar con los periféricos implementados.
+Adicionalmente, se pretende comprender el proceso de diseño de hardware en Vivado, la asignación de direcciones de memoria a los periféricos, la generación del archivo de configuración de la FPGA y la integración entre hardware y software.
 
 El flujo completo de la práctica es:
 
