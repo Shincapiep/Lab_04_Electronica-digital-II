@@ -88,6 +88,8 @@ La memoria BRAM se incorpora como un recurso de almacenamiento interno de la ló
 
 Se conectaron los bloques de memoria y reset:
 
+![Memoria](./imgs/memoria.png)
+
 ![Bloques conectados](./imgs/BloquesConectados.png)
 
 Luego se agregaron desde la pestaña `Board` los GPIO **4 Buttons** y **4 LEDs**, y se conectaron sus señales de reloj, reset y AXI:
