@@ -145,7 +145,7 @@ Una vez validada la arquitectura, se genera el bitstream, archivo que contiene l
 
 Desde Vivado (`Tools → Launch Vitis IDE`) se abrió Vitis y se creó un **Platform Component** a partir del archivo `.xsa`, con el flujo `Hardware Design`. La plataforma se configuró con sistema operativo **standalone** (sin sistema operativo) sobre el procesador **ps7_cortexa9_0**.
 
-![Creación de la plataforma](imgs/11_vitis_platform.png)
+![Creación de la plataforma](./imgs/CreatePlatform.png)
 
 La plataforma reúne la descripción del hardware y los controladores (*drivers*) de los periféricos, como el del AXI GPIO, que la aplicación usa para acceder a ellos.
 
@@ -159,7 +159,7 @@ El funcionamiento del programa consiste en generar una secuencia periódica de e
 
 De esta manera, la aplicación demuestra cómo el procesador puede modificar dinámicamente el estado de los periféricos implementados en la lógica programable mediante instrucciones ejecutadas por software.
 
-![Creación de la aplicación](imgs/12_vitis_application.png)
+
 
 ### 4.3 Compilación y ejecución
 
