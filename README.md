@@ -154,6 +154,7 @@ La plataforma reúne la descripción del hardware y los controladores (*drivers*
 ### 4.2 Aplicación
 
 Sobre la plataforma se creó una **Application Component** vacía, usando el dominio creado por defecto, y se agregó el archivo `main.c` de la guía.
+
 ![Aplicación](./imgs/Aplication.png)
 
 El programa desarrollado en lenguaje C permite controlar los LEDs y consultar el estado de las entradas digitales mediante operaciones sobre los registros del periférico AXI GPIO. Para ello, se establece una dirección base correspondiente al dispositivo, a partir de la cual se realizan los accesos a los registros de datos y de configuración de sus canales.
