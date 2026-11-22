@@ -48,7 +48,6 @@ El Zynq-7000 integra en un mismo chip dos partes que trabajan juntas:
 
 Las dos partes se comunican mediante buses **AXI**. En esta práctica, el procesador (PS) actúa como **maestro**: lee y escribe en periféricos implementados en la PL (memoria BRAM y GPIO) como si fueran posiciones de memoria.
 
-![Arquitectura del Zynq-7000](imgs/Selección de la placa.png)
 
 ---
 
@@ -93,11 +92,9 @@ Se conectaron los bloques de memoria y reset:
 
 Luego se agregaron desde la pestaña `Board` los GPIO **4 Buttons** y **4 LEDs**, y se conectaron sus señales de reloj, reset y AXI:
 
-![GPIO de LEDs y switch](imgs/04_gpio.png)
-
 Con `Regenerate Layout`, el diagrama final queda así:
 
-![Diagrama de bloques final](imgs/05_diagrama_final.png)
+![Diagrama de bloques final](./imgs/Diagrama%20completo.png)
 
 En el diagrama se distinguen tres tipos de conexiones:
 
