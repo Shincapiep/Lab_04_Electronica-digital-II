@@ -83,13 +83,13 @@ Para el control de las entradas y salidas se configura un AXI GPIO de doble cana
 
 La memoria BRAM se incorpora como un recurso de almacenamiento interno de la lógica programable. Su integración al sistema permite disponer de una región de memoria accesible mediante el controlador AXI BRAM, aunque su utilización efectiva depende de que la aplicación realice operaciones de acceso a dicha región.
 
-![Bloques agregados](imgs/02_bloques_sueltos.png)
+
 
 ### 3.4 Conexiones
 
 Se conectaron los bloques de memoria y reset:
 
-![Bloques conectados](imgs/03_bloques_unidos.png)
+![Bloques conectados](./imgs/BloquesConectados.png)
 
 Luego se agregaron desde la pestaña `Board` los GPIO **4 Buttons** y **4 LEDs**, y se conectaron sus señales de reloj, reset y AXI:
 
