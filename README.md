@@ -145,6 +145,8 @@ Una vez validada la arquitectura, se genera el bitstream, archivo que contiene l
 
 Desde Vivado (`Tools → Launch Vitis IDE`) se abrió Vitis y se creó un **Platform Component** a partir del archivo `.xsa`, con el flujo `Hardware Design`. La plataforma se configuró con sistema operativo **standalone** (sin sistema operativo) sobre el procesador **ps7_cortexa9_0**.
 
+![Exportación del archivo XSA](./imgs/ExportXSA.png)
+
 ![Creación de la plataforma](./imgs/CreatePlatform.png)
 
 La plataforma reúne la descripción del hardware y los controladores (*drivers*) de los periféricos, como el del AXI GPIO, que la aplicación usa para acceder a ellos.
