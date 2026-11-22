@@ -62,7 +62,7 @@ Se instalaron los *board files* de Digilent siguiendo la guía oficial, para que
 
 Se creó un proyecto RTL seleccionando la placa **Zybo Z7-10** en la pestaña `Boards`, en lugar de elegir solo el chip.
 
-![Selección de la placa](imgs/selección_de_la_placa.png)
+![Selección de la placa](imgs/Selección%20de%20la%20placa.png)
 
 ### 3.3 Bloques del sistema
 
