@@ -118,20 +118,12 @@ En el caso del AXI GPIO, el acceso a los diferentes registros se realiza mediant
 
 La correspondencia entre las direcciones asignadas en Vivado y las utilizadas en el código C resulta indispensable para garantizar el funcionamiento del sistema. Por esta razón, es necesario verificar que la dirección base definida en el programa coincida con la configuración del hardware exportado.
 
-![Address Editor](imgs/06_address_editor.png)
-
-| Periférico | Dirección base | Rango |
-|---|---|---|
-| `axi_bram_ctrl_0` | _[completar con la captura]_ | _[ ]_ |
-| `axi_gpio_0` | _[completar con la captura]_ | 4K |
-
-Estas direcciones quedan registradas en el archivo `xparameters.h` que genera Vitis, y son las que usa el programa en C para acceder a los LEDs y switch.
 
 ### 3.6 HDL Wrapper
 
 El Block Design no se puede sintetizar directamente: Vivado necesita un módulo HDL de nivel superior. Con `Create HDL Wrapper` → `Let Vivado manage wrapper and auto-update` se generó un archivo que instancia el diseño de bloques y expone sus puertos externos. Con la opción automática, el wrapper se actualiza solo si se modifica el diagrama.
 
-![HDL Wrapper](imgs/07_wrapper.png)
+![HDL Wrapper](./imgs/Wrapper.png)
 
 ### 3.7 Run Block Automation
 
