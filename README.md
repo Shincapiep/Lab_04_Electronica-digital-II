@@ -129,15 +129,14 @@ El Block Design no se puede sintetizar directamente: Vivado necesita un módulo 
 
 Aquí se ejecuta la herramienta `Run Block Automation` para aplicar la configuración predeterminada correspondiente a la tarjeta Zybo Z7-10. Este procedimiento permite configurar diferentes parámetros del Processing System y establecer las conexiones externas necesarias para las interfaces `DDR` y `FIXED_IO`, que conectan el PS con la memoria y los pines fijos de la tarjeta.
 
-![Run Block Automation](imgs/08_run_block_automation.png)
 
 ### 3.8 Bitstream y exportación del hardware
 
 Una vez validada la arquitectura, se genera el bitstream, archivo que contiene la información necesaria para configurar los recursos de la lógica programable de la FPGA. Posteriormente, mediante la opción `Export Hardware`, se genera un archivo XSA que contiene la descripción de la plataforma hardware y la información necesaria para crear el entorno de desarrollo en Vitis. Cuando se selecciona la opción correspondiente, el archivo exportado también incluye el bitstream. Este proceso establece la conexión entre el diseño realizado en Vivado y el desarrollo de software que se ejecutará sobre el procesador ARM.
 
-![Bitstream generado](imgs/09_bitstream.png)
+![Exportación del bitstream](./imgs/ExpBitStream.png)
 
-![Exportación del hardware](imgs/10_export_hardware.png)
+![Exportación de hardware](./imgs/Export.png)
 
 ---
 
