@@ -48,7 +48,7 @@ El Zynq-7000 integra en un mismo chip dos partes que trabajan juntas:
 
 Las dos partes se comunican mediante buses **AXI**. En esta práctica, el procesador (PS) actúa como **maestro**: lee y escribe en periféricos implementados en la PL (memoria BRAM y GPIO) como si fueran posiciones de memoria.
 
-![Arquitectura del Zynq-7000](imgs/zynq-7000.png)
+![Arquitectura del Zynq-7000](imgs/Selección de la placa.png)
 
 ---
 
