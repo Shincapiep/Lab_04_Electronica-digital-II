@@ -172,7 +172,7 @@ La compilación de la aplicación permite verificar que el código fuente y las 
 
 La ejecución del programa permite observar la interacción entre el procesador ARM y los periféricos GPIO. Durante esta etapa, el procesador realiza operaciones sobre los registros mapeados en memoria, mientras que el hardware implementado en la FPGA permite reflejar dichas operaciones en las señales físicas de entrada y salida.
 
-![Build y Run](imgs/13_build_run.png)
+![Build](./imgs/Build.png)
 
 ---
 
