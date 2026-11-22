@@ -136,7 +136,6 @@ Una vez validada la arquitectura, se genera el bitstream, archivo que contiene l
 
 ![Exportación del bitstream](./imgs/ExpBitStream.png)
 
-![Exportación de hardware](./imgs/Export.png)
 
 ---
 
